@@ -8,7 +8,7 @@
     tools:context="tools.ysapps.com.locationdemoapp.MainActivity">
 
     <TextView
-        android:id="@+id/txtOutput"
+        android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOcation coded"/>
