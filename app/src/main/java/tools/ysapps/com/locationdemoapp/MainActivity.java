@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -20,22 +19,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private final String Tag = "testApp";
     private TextView tvLocation, tvActivity;
     private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
     private LocationRequest mLocationRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addApi(ActivityRecognition.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
         tvLocation = (TextView) findViewById(R.id.tv_location);
-
+        tvActivity = (TextView) findViewById(R.id.tv_activity);
+        buildGoogleApiClient();
 
     }
+
 
     @Override
     protected void onStart() {
@@ -46,8 +42,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onStop() {
         super.onStop();
-        mGoogleApiClient.disconnect();
+        if (mGoogleApiClient.isConnected())
+            mGoogleApiClient.disconnect();
     }
+
+    private void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null){
+            //do some nonsense stuff
+        }
         mLocationRequest = LocationRequest.create()
                 .setInterval(10000)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
