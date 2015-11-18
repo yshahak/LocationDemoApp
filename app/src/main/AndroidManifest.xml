@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".DetectedActivitiesIntentService"/>
+        <service android:name=".DetectedActivitiesIntentService"
+            android:exported="false"/>
     </application>
 
 </manifest>
