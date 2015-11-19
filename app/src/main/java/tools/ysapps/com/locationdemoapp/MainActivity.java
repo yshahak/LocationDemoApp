@@ -203,9 +203,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     private PendingIntent getGeofencePendingIntent() {
-        //Intent intent = new Intent(this, GeoFeneceTransitionsIntentService.class);
-        //return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return null;
+        Intent intent = new Intent(this, GeoFeneceTransitionsIntentService.class);
+        return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
 

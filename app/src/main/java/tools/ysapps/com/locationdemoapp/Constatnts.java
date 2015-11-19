@@ -24,8 +24,6 @@ public class Constatnts {
 
     static {
         BAY_AREA_LANDMARKS.put("WORK", new LatLng(32.0604473, 34.7821697));
-        BAY_AREA_LANDMARKS.put("HOME", new LatLng(32.0242456, 34.7591935));
-        BAY_AREA_LANDMARKS.put("PARENTS", new LatLng(31.9359943, 34.8373441));
-        BAY_AREA_LANDMARKS.put("WOLFSON", new LatLng(32.0361652, 34.7635518));
+        BAY_AREA_LANDMARKS.put("HOME", new LatLng(32.485669, 35.004026));
     }
 }
